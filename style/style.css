@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+	padding: 0; 
+}
+header{
+  font-family: 'Arial', sans-serif;
+  background: transparent linear-gradient(180deg, #292929 0%,#1b1b1b 100%) 0% 0% no-repeat padding-box;
+  z-index:5;
+  position: relative;
+  box-shadow: 0 0 10px rgba(1.5,1.5,1.5,1.5);
+  border: 0px solid orange;
+  padding:1%;
+}
+body{
+  background-color: #444444;
+  font-family: 'Russo One', sans-serif;
+}
+.container{
+  color:black;
+  font-family: 'Russo One', sans-serif;
+  text-align: center;
+}
+.logo{
+  font-family: 'Russo One', sans-serif;
+}
+.us {
+  display: none;
+}
+
+.ru {
+  display: inline;
+}
+
+
+
+
