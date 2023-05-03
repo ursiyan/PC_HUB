@@ -14,6 +14,11 @@
 	<title>PC Hub</title>	
 </head>
 
+<!-- git add .
+git commit -m "Comment"
+git push origin -->
+
+
 <body>
 <header>
 	<table>
@@ -24,15 +29,15 @@
 
 			<th>
 				<div class="container">			
-				<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/cpu.html">Процессоры</a>
-				<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/cpu.html">CPU</a>			
+				<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/cpu.php">Процессоры</a>
+				<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/cpu.php">CPU</a>			
 			</div>	
 			</th>	
 		</th>
 		<th>
 			<div class="container">			
 			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="index.php">Видеокарты</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">GPU</a>			
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.php">GPU</a>			
 		</div>	
 		</th>
 		<th>

@@ -1,4 +1,3 @@
-<!doctype php>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -84,39 +83,53 @@
 	</div>	
 </table>   
 </header>
-
+<br><br><br>
 <center>
-	<table>
-		<th>
-			<div>
-				<button class="btn btn-inline dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<text style="font-size:35px; margin-left:-20%; color:#ffd445">Выбери первый процессор</text>
-  				</button>
-			
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" style="font-size:20px;" href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_crane.php">Intel</a>
-				<a class="dropdown-item" style="font-size:20px;" href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_gruz.php">AMD</a>
-				<a class="dropdown-item" style="font-size:20px;"  href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_manip.php">Байкал</a>
-				<a class="dropdown-item" style="font-size:20px;"  href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_manip.php">Тархун</a>
-				</div>
-			</div>
-		</th>
-		<th>
-			<div>
-				<button class="btn btn-inline dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<text style="font-size:35px; margin-left:20%; color:#ffd445">Выбери второй процессор</text>
-  				</button>
-			
-				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" style="font-size:20px;" href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_crane.php">Intel</a>
-					<a class="dropdown-item" style="font-size:20px;" href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_gruz.php">AMD</a>
-					<a class="dropdown-item" style="font-size:20px;"  href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_manip.php">Байкал</a>
-					<a class="dropdown-item" style="font-size:20px;"  href="/ursiyan.cranerent.ru/ursiyan.cranerent.ru/public_html/pages/rent_manip.php">Тархун</a>
-					</div>
-			</div>
-		<th>
-			
-	</table>
+	<form method='POST' target='_blank' action='compare.php'>
+		<select id="subject-select" name="proc1">
+			<option selected disabled hidden> Choose here </option>
+				<?php
+				// Подключение к базе данных
+				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
+
+				// Получение списка предметов из базы данных
+				$result = mysqli_query($connection, "SELECT * FROM `processors`");
+				
+				// Создание опций для тега <select>
+				while ($row = mysqli_fetch_assoc($result)) {
+					echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+				}
+
+				// Закрытие соединения с базой данных
+				mysqli_close($connection);
+				?>
+
+				</select>
+		<select id="subject-select" name="proc2">
+			<option selected disabled hidden> Choose here </option>
+
+				<?php
+				// Подключение к базе данных
+				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
+
+				// Получение списка предметов из базы данных
+				$result = mysqli_query($connection, "SELECT * FROM `processors`");
+				
+				// Создание опций для тега <select>
+				while ($row = mysqli_fetch_assoc($result)) {
+					echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
+				}
+
+				// Закрытие соединения с базой данных
+				mysqli_close($connection);
+				?>
+		</select>
+
+		<center>
+		<br><br><br>
+		<button  class='btn btn-success' type='submit'>Сравнить</button>
+		</center>
+	</form>
 	
 </center>
 </body>
