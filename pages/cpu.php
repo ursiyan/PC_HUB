@@ -1,3 +1,65 @@
+<?php
+
+$proc1 = $_POST['proc1'];
+$proc2 = $_POST['proc2'];
+
+require_once("bd.php");
+
+$data = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc1 . "';")->fetchAll();
+$data2 = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc2 . "';")->fetchAll();
+
+
+echo "
+<center><link rel='stylesheet' href='../style/compare.css'>
+<div class='cpu_comp'>
+	<table class='fixed_headers'>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>" . $data[0][0] . "</th>
+      <th>" . $data2[0][0] . "</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ядра</td>
+      <td>" . $data[0][1] . " </td>
+      <td>" . $data2[0][1] . "</td>
+    </tr>
+    <tr>
+      <td>Потоки</td>
+      <td>" . $data[0][2] . "</td>
+      <td>" . $data2[0][2] . "</td>
+    </tr>
+    <tr>
+      <td>Частота</td>
+      <td>" . $data[0][3] . "</td>
+      <td>" . $data2[0][3] . "</td>
+    </tr>
+    <tr>
+      <td>Год выпуска</td>
+      <td>" . $data[0][4] . "</td>
+      <td>" . $data2[0][4] . "</td>
+    </tr>
+    <tr>
+      <td>Сокет</td>
+      <td>" . $data[0][5] . " </td>
+      <td>" . $data2[0][5] . "</td>
+    </tr>
+    <tr>
+      <td>Цена</td>
+      <td>" . $data[0][6] ."</td>
+      <td>" . $data2[0][6] ."</td>
+    </tr>
+    <tr>
+      <td>Рейтинг</td>
+      <td>" . $data[0][7] . "</td>
+      <td>" . $data2[0][7] . "</td>
+    </tr>
+  </tbody>
+</table>
+</div></center>"
+?>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,14 +75,13 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<title>PC HUB</title>	
 </head>
-
 <body>
 <header>
 	<table>
 		<th>
 			<div class="logo">			
-			<a style="color:white; font-size:300%"  rel="alternate" href="#">PC</a>
-			<a style="color:black; font-size:300%; background-color: #ffa31a; border-radius: 5px;"rel="alternate" href="#">HUB</a>	</div>	
+			<a style="color:white; font-size:300%"  rel="alternate" href="../index.php">PC</a>
+			<a style="color:black; font-size:300%; background-color: #ffa31a; border-radius: 5px;"rel="alternate" href="../index.php">HUB</a>	</div>	
 
 			<th>
 				<div class="container">			
@@ -85,8 +146,9 @@
 </header>
 <br><br><br>
 <center>
-	<form method='POST' target='_blank' action='compare.php'>
-		<select id="subject-select" name="proc1">
+	<form method='POST' action='cpu.php'>
+	<table>	
+	<th><select class="form-control input-xs"   id="subject-select" name="proc1">
 			<option selected disabled hidden> Choose here </option>
 				<?php
 				// Подключение к базе данных
@@ -104,8 +166,9 @@
 				mysqli_close($connection);
 				?>
 
-				</select>
-		<select id="subject-select" name="proc2">
+				</select></th>
+				<th style="font-size: 30px;">&nbsp;&nbsp;VS&nbsp;&nbsp;</th>
+		<th><select class="form-control input-xs"  id="subject-select" name="proc2">
 			<option selected disabled hidden> Choose here </option>
 
 				<?php
@@ -123,11 +186,11 @@
 				// Закрытие соединения с базой данных
 				mysqli_close($connection);
 				?>
-		</select>
-
+		</select></th>
+			</table>
 		<center>
 		<br><br><br>
-		<button  class='btn btn-success' type='submit'>Сравнить</button>
+		<button class='btn btn-success' type='submit'>Сравнить</button>
 		</center>
 	</form>
 	

@@ -21,7 +21,7 @@ git push origin -->
 
 <body>
 <header>
-	<table>
+	<table class="shapka">
 		<th>
 			<div class="logo">			
 			<a style="color:white; font-size:300%"  rel="alternate" href="#">PC</a>
