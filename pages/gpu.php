@@ -5,14 +5,14 @@ $proc2 = $_POST['proc2'];
 
 require_once("bd.php");
 
-$data = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc1 . "';")->fetchAll();
-$data2 = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc2 . "';")->fetchAll();
+$data = $pdo->query("SELECT `name`,`LHR`,`videomemory`,`connection_interface`,`video_output`,`price`,`rate` FROM `gpu` WHERE `id` ='" . $proc1 . "';")->fetchAll();
+$data2 = $pdo->query("SELECT `name`,`LHR`,`videomemory`,`connection_interface`,`video_output`,`price`,`rate` FROM `gpu` WHERE `id` ='" . $proc2 . "';")->fetchAll();
 
 
 echo "
 <center><link rel='stylesheet' href='../style/compare.css'>
 <div class='cpu_comp'>
-	<table class='fixed_headers'>
+	<table class='fixed_headers ru'>
   <thead>
     <tr>
       <th>Название</th>
@@ -22,39 +22,34 @@ echo "
   </thead>
   <tbody>
     <tr>
-      <td>Ядра</td>
+      <td>LHR</td>
       <td>" . $data[0][1] . " </td>
       <td>" . $data2[0][1] . "</td>
     </tr>
     <tr>
-      <td>Потоки</td>
+      <td>Видео-память</td>
       <td>" . $data[0][2] . "</td>
       <td>" . $data2[0][2] . "</td>
     </tr>
     <tr>
-      <td>Частота</td>
+      <td>Типы подключения</td>
       <td>" . $data[0][3] . "</td>
       <td>" . $data2[0][3] . "</td>
     </tr>
     <tr>
-      <td>Год выпуска</td>
+      <td>Видео-выход</td>
       <td>" . $data[0][4] . "</td>
       <td>" . $data2[0][4] . "</td>
     </tr>
     <tr>
-      <td>Сокет</td>
+      <td>Цена</td>
       <td>" . $data[0][5] . " </td>
       <td>" . $data2[0][5] . "</td>
     </tr>
     <tr>
-      <td>Цена</td>
+      <td>Рейтинг</td>
       <td>" . $data[0][6] ."</td>
       <td>" . $data2[0][6] ."</td>
-    </tr>
-    <tr>
-      <td>Рейтинг</td>
-      <td>" . $data[0][7] . "</td>
-      <td>" . $data2[0][7] . "</td>
     </tr>
   </tbody>
 </table>
@@ -146,7 +141,7 @@ echo "
 </header>
 <br><br><br>
 <center>
-	<form method='POST' action='cpu.php'>
+	<form method='POST' action='gpu.php'>
 	<table>	
 	<th><select class="form-control input-xs"   id="subject-select" name="proc1">
 			<option selected disabled hidden> Choose here </option>
@@ -155,7 +150,7 @@ echo "
 				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
 
 				// Получение списка предметов из базы данных
-				$result = mysqli_query($connection, "SELECT * FROM `processors`");
+				$result = mysqli_query($connection, "SELECT * FROM `gpu`");
 				
 				// Создание опций для тега <select>
 				while ($row = mysqli_fetch_assoc($result)) {
@@ -176,7 +171,7 @@ echo "
 				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
 
 				// Получение списка предметов из базы данных
-				$result = mysqli_query($connection, "SELECT * FROM `processors`");
+				$result = mysqli_query($connection, "SELECT * FROM `gpu`");
 				
 				// Создание опций для тега <select>
 				while ($row = mysqli_fetch_assoc($result)) {

@@ -18,32 +18,3 @@ function changeLanguage(lang) {
       });
     }
   }
-
-  // Получаем кнопку и элемент, на который нужно применить стиль
-const applyStyleBtn = document.getElementById('comparing');
-const elementToStyle = document.getElementById('table_comp');
-
-// Получаем сохраненный стиль из локального хранилища
-const savedStyle = localStorage.getItem('saved-style');
-
-// Если стиль был сохранен, применяем его
-if (savedStyle) {
-  elementToStyle.style.cssText = savedStyle;
-}
-
-// Добавляем обработчик события на кнопку
-applyStyleBtn.addEventListener('click', () => {
-  // Применяем стиль
-  elementToStyle.style.display = 'inline';
-  
-  // Сохраняем стиль в локальное хранилище
-  const styleToSave = elementToStyle.style.cssText;
-  localStorage.setItem('saved-style', styleToSave);
-});
-
-// Добавляем обработчик события на закрытие вкладки
-window.addEventListener('beforeunload', () => {
-  // Удаляем сохраненный стиль из локального хранилища
-  localStorage.removeItem('saved-style');
-});
-
