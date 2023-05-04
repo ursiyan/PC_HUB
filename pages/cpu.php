@@ -8,7 +8,7 @@ require_once("bd.php");
 $data = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc1 . "';")->fetchAll();
 $data2 = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc2 . "';")->fetchAll();
 
-
+if ($proc1!=null && $proc2!==null){
 echo "
 <center><link rel='stylesheet' href='../style/compare.css'>
 <div class='cpu_comp'>
@@ -58,7 +58,7 @@ echo "
     </tr>
   </tbody>
 </table>
-</div></center>"
+</div></center>";}
 ?>
 <html>
 <head>
@@ -77,7 +77,7 @@ echo "
 </head>
 <body>
 <header>
-	<table>
+<table>
 		<th>
 			<div class="logo">			
 			<a style="color:white; font-size:300%"  rel="alternate" href="../index.php">PC</a>
@@ -98,33 +98,33 @@ echo "
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Блоки питания</a>	
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Power Units</a>		
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="power_units.php">Блоки питания</a>	
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="power_units.html">Power Units</a>		
 		</div>		
 
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Материнские платы</a>		
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Motherboards</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="motherboards.php">Материнские платы</a>		
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="motherboards.php">Motherboards</a>			
 		</div>
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Накопители</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Storage devices</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="memory_storage.php">Накопители</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="memory_storage.php">Storage devices</a>			
 		</div>
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Мониторы</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Monitors</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="monitors.php">Мониторы</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="monitors.php">cases</a>			
 		</div>	
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Корпуса</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Cases</a>	
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="cases.php">Корпуса</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="cases.php">Cases</a>	
 
 		</div>	</th>
 		<th></th>
@@ -148,6 +148,8 @@ echo "
 <center>
 	<form method='POST' action='cpu.php'>
 	<table>	
+	<h1 style="color:white; font-size:200%">Сравнение процессоров</h1><br><br>
+
 	<th><select class="form-control input-xs"   id="subject-select" name="proc1">
 			<option selected disabled hidden> Choose here </option>
 				<?php

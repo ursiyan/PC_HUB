@@ -36,39 +36,39 @@ git push origin -->
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="index.php">Видеокарты</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.php">GPU</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/gpu.php">Видеокарты</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/gpu.php">GPU</a>			
 		</div>	
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Блоки питания</a>	
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Power Units</a>		
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/power_units.php">Блоки питания</a>	
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/power_units.php">Power Units</a>		
 		</div>		
 
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Материнские платы</a>		
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Motherboards</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/motherboards.php">Материнские платы</a>		
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/motherboards.php">Motherboards</a>			
 		</div>
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Накопители</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Storage devices</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/memory_storage.php">Накопители</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/memory_storage.php">Storage devices</a>			
 		</div>
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Мониторы</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Monitors</a>			
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/monitors.php">Мониторы</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/monitors.php">Monitors</a>			
 		</div>	
 		</th>
 		<th>
 			<div class="container">			
-			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="../index.php">Корпуса</a>
-			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="/pages/cpu.html">Cases</a>	
+			<a class="ru" style="color:white; font-size:175%"  rel="alternate" href="pages/cases.php">Корпуса</a>
+			<a class="us" style="color:white; font-size:200%"  rel="alternate" href="pages/cases.php">Cases</a>	
 
 		</div>	</th>
 		<th></th>

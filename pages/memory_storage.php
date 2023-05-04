@@ -5,8 +5,8 @@ $proc2 = $_POST['proc2'];
 
 require_once("bd.php");
 
-$data = $pdo->query("SELECT `name`,`LHR`,`videomemory`,`connection_interface`,`video_output`,`price`,`rate` FROM `gpu` WHERE `id` ='" . $proc1 . "';")->fetchAll();
-$data2 = $pdo->query("SELECT `name`,`LHR`,`videomemory`,`connection_interface`,`video_output`,`price`,`rate` FROM `gpu` WHERE `id` ='" . $proc2 . "';")->fetchAll();
+$data = $pdo->query("SELECT `name`,`storage_type`,`capacity`,`read_speed`,`write_speed`,`price`,`rate`  FROM `memory_storage` WHERE `id` ='" . $proc1 . "';")->fetchAll();
+$data2 = $pdo->query("SELECT `name`,`storage_type`,`capacity`,`read_speed`,`write_speed`,`price`,`rate`  FROM `memory_storage` WHERE `id` ='" . $proc2 . "';")->fetchAll();
 
 if ($proc1!=null && $proc2!==null){
 echo "
@@ -22,22 +22,22 @@ echo "
   </thead>
   <tbody>
     <tr>
-      <td>LHR</td>
+      <td>Тип памяти</td>
       <td>" . $data[0][1] . " </td>
       <td>" . $data2[0][1] . "</td>
     </tr>
     <tr>
-      <td>Видео-память</td>
+      <td>Объем накопителя</td>
       <td>" . $data[0][2] . "</td>
       <td>" . $data2[0][2] . "</td>
     </tr>
     <tr>
-      <td>Типы подключения</td>
+      <td>Скорость чтения</td>
       <td>" . $data[0][3] . "</td>
       <td>" . $data2[0][3] . "</td>
     </tr>
     <tr>
-      <td>Видео-выход</td>
+      <td>Скорость записи</td>
       <td>" . $data[0][4] . "</td>
       <td>" . $data2[0][4] . "</td>
     </tr>
@@ -48,8 +48,8 @@ echo "
     </tr>
     <tr>
       <td>Рейтинг</td>
-      <td>" . $data[0][6] ."</td>
-      <td>" . $data2[0][6] ."</td>
+      <td>" . $data[0][6] . " </td>
+      <td>" . $data2[0][6] . "</td>
     </tr>
   </tbody>
 </table>
@@ -141,10 +141,10 @@ echo "
 </header>
 <br><br><br>
 <center>
-	<form method='POST' action='gpu.php'>
-	<h1 style="color:white; font-size:200%">Сравнение видеокарт</h1><br><br>
-
+	<form method='POST' action='memory_storage.php'>
 	<table>	
+    <h1 style="color:white; font-size:200%">Сравнение накопителей</h1><br><br>
+
 	<th><select class="form-control input-xs"   id="subject-select" name="proc1">
 			<option selected disabled hidden> Choose here </option>
 				<?php
@@ -152,7 +152,7 @@ echo "
 				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
 
 				// Получение списка предметов из базы данных
-				$result = mysqli_query($connection, "SELECT * FROM `gpu`");
+				$result = mysqli_query($connection, "SELECT * FROM `memory_storage`");
 				
 				// Создание опций для тега <select>
 				while ($row = mysqli_fetch_assoc($result)) {
@@ -173,7 +173,7 @@ echo "
 				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
 
 				// Получение списка предметов из базы данных
-				$result = mysqli_query($connection, "SELECT * FROM `gpu`");
+				$result = mysqli_query($connection, "SELECT * FROM `memory_storage`");
 				
 				// Создание опций для тега <select>
 				while ($row = mysqli_fetch_assoc($result)) {
