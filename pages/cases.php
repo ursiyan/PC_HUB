@@ -1,11 +1,35 @@
 <?php
 
+
+/**
+ * Сравнивает два корпуса по их характеристикам.
+ * @brief Идентификатор первого корпуса.
+ * @var string|null $proc1
+ */
 $proc1 = $_POST['proc1'];
+
+
+/**
+ * Сравнивает два корпуса по их характеристикам.
+ * @brief Идентификатор второго корпуса.
+ * @var string|null $proc2
+ */
 $proc2 = $_POST['proc2'];
 
 require_once("bd.php");
 
+
+/**
+ * @brief Извлекает информацию из базы данных о корпусах, соответствующих переданным значениям $proc1.
+ * @var array $data
+ */
 $data = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`,`rate` FROM `cases` WHERE  `id` ='" . $proc1 . "';")->fetchAll();
+
+
+/**
+ * @brief Извлекает информацию из базы данных о корпусах, соответствующих переданным значениям $proc2.
+ * @var array $data2
+ */
 $data2 = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`,`rate` FROM `cases` WHERE  `id` ='" . $proc2 . "';")->fetchAll();
 
 if ($proc1!=null && $proc2!==null){
@@ -148,18 +172,24 @@ echo "
 	<th><select class="form-control input-xs"   id="subject-select" name="proc1">
 			<option selected disabled hidden> Choose here </option>
 				<?php
-				// Подключение к базе данных
+
+				/**
+				 * @brief Устанавливает соединение с базой данных и выбирает нужную БД.
+				 * @var array $connection
+				 */
+
 				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
 
-				// Получение списка предметов из базы данных
+				/**
+				 * @brief Выполняет запрос к базе данных MySQL для выборки всех записей из таблицы 
+				 * @var array $result
+				 */
 				$result = mysqli_query($connection, "SELECT * FROM `cases`");
 				
-				// Создание опций для тега <select>
 				while ($row = mysqli_fetch_assoc($result)) {
 					echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
 				}
 
-				// Закрытие соединения с базой данных
 				mysqli_close($connection);
 				?>
 
