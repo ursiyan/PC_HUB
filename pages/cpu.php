@@ -1,14 +1,14 @@
 <?php
 
-$proc1 = $_POST['proc1'];
-$proc2 = $_POST['proc2'];
+$proc1 = $_POST['proc1']; // Переменная с ID первого процессора
+$proc2 = $_POST['proc2']; // Переменная с ID второго процессора
 
-require_once("bd.php");
+require_once("bd.php"); // Подклчюение к базе данных
 
-$data = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc1 . "';")->fetchAll();
-$data2 = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc2 . "';")->fetchAll();
+$data = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc1 . "';")->fetchAll(); // Запрос данных из базы данных о первом процессора
+$data2 = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc2 . "';")->fetchAll(); // Запрос данных из базы данных о втором процессора
 
-if ($proc1!=null && $proc2!==null){
+if ($proc1!=null && $proc2!==null){ // Проверка на ненулевое значение переменной с ID процессоров
 echo "
 <center><link rel='stylesheet' href='../style/compare.css'>
 <div class='cpu_comp'>
@@ -58,7 +58,7 @@ echo "
     </tr>
   </tbody>
 </table>
-</div></center>";}
+</div></center>";} // Вывод таблицы для сравнения характеристик процессоров
 ?>
 <html>
 <head>
@@ -136,7 +136,7 @@ echo "
   				</button>
 			
 				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<button onclick="changeLanguage('ru')" class="dropdown-item" style="font-size:20px;">Русский</button>
+					<button onclick="changeLanguage('ru')" class="dropdown-item" style="font-size:20px;">Русский</button> 
 					<button onclick="changeLanguage('us')" class="dropdown-item" style="font-size:20px;">English</button>
 				  </div>
 			</div>
@@ -154,10 +154,10 @@ echo "
 			<option selected disabled hidden> Choose here </option>
 				<?php
 				// Подключение к базе данных
-				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
+				$connection = mysqli_connect("localhost", "root", "", "pc_hub"); 
 
 				// Получение списка предметов из базы данных
-				$result = mysqli_query($connection, "SELECT * FROM `processors`");
+				$result = mysqli_query($connection, "SELECT * FROM `processors`"); 
 				
 				// Создание опций для тега <select>
 				while ($row = mysqli_fetch_assoc($result)) {
@@ -194,6 +194,8 @@ echo "
 		<br><br><br>
 		<button class='btn btn-success ru' type='submit'>Сравнить</button>
 		<button class='btn btn-success us' type='submit'>Compare</button>
+		<br>
+		<input type="checkbox"> Показать различия </input>
 		</center>
 	</form>
 	
