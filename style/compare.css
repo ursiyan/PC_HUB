@@ -5,6 +5,7 @@
     padding: 0;
     width: 100%;
     table-layout: fixed;
+	  width: 50%;
   }
   
   .fixed_headers caption {

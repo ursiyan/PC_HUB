@@ -2,12 +2,6 @@
 	margin: 0;
 	padding: 0; 
 }
-.cpu_comp{
-	position:absolute;
-	margin-top:25%;
-  margin-left: 25%;
-	width: 50%;
-  }
 
 header{
   font-family: 'Arial', sans-serif;
@@ -41,48 +35,38 @@ h1{
   display: inline;
 }
 
-.fixed_headers{
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
+.top{
+  width: 75%;
+  margin-bottom: 5%;
 }
 
-.fixed_headers caption {
+.top caption {
   font-size: 1.5em;
   margin: .5em 0 .75em;
 }
 
-.fixed_headers tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
-}
-
-.fixed_headers th,
-.fixed_headers td {
+.top th,
+.top td {
   padding: .625em;
   text-align: center;
 }
 
-.fixed_headers th {
+.top th {
   font-size: .85em;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
 
 @media screen and (max-width: 600px) {
-  .fixed_headers {
+  .top {
     border: 0;
   }
 
-  .fixed_headers caption {
+  .top caption {
     font-size: 1.3em;
   }
   
-  .fixed_headers thead {
+  .top thead {
     border: none;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -93,22 +77,22 @@ h1{
     width: 1px;
   }
   
-  .fixed_headers tr {
+  .top tr {
     border-bottom: 3px solid #ddd;
     display: block;
     margin-bottom: .625em;
   }
   
-  .fixed_headers td {
+  .top td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: .8em;
     text-align: right;
   }
   
-  .fixed_headers td::before {
+  .top td::before {
     /*
-    * aria-label has no advantage, it won't be read inside a .fixed_headers
+    * aria-label has no advantage, it won't be read inside a .top
     content: attr(aria-label);
     */
     content: attr(data-label);
@@ -117,7 +101,7 @@ h1{
     text-transform: uppercase;
   }
   
-  .fixed_headers td:last-child {
+  .top td:last-child {
     border-bottom: 0;
   }
 }

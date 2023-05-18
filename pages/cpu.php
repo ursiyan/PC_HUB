@@ -7,58 +7,7 @@ require_once("bd.php"); // Подклчюение к базе данных
 
 $data = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc1 . "';")->fetchAll(); // Запрос данных из базы данных о первом процессора
 $data2 = $pdo->query("SELECT `name`,`cores`,`threads`,`frequency`,`year`,`socket`,`price`,`rate` FROM `processors` WHERE `id` ='" . $proc2 . "';")->fetchAll(); // Запрос данных из базы данных о втором процессора
-
-if ($proc1!=null && $proc2!==null){ // Проверка на ненулевое значение переменной с ID процессоров
-echo "
-<center><link rel='stylesheet' href='../style/compare.css'>
-<div class='cpu_comp'>
-	<table class='fixed_headers'>
-  <thead>
-    <tr>
-      <th>Название</th>
-      <th>" . $data[0][0] . "</th>
-      <th>" . $data2[0][0] . "</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Ядра</td>
-      <td>" . $data[0][1] . " </td>
-      <td>" . $data2[0][1] . "</td>
-    </tr>
-    <tr>
-      <td>Потоки</td>
-      <td>" . $data[0][2] . "</td>
-      <td>" . $data2[0][2] . "</td>
-    </tr>
-    <tr>
-      <td>Частота</td>
-      <td>" . $data[0][3] . "</td>
-      <td>" . $data2[0][3] . "</td>
-    </tr>
-    <tr>
-      <td>Год выпуска</td>
-      <td>" . $data[0][4] . "</td>
-      <td>" . $data2[0][4] . "</td>
-    </tr>
-    <tr>
-      <td>Сокет</td>
-      <td>" . $data[0][5] . " </td>
-      <td>" . $data2[0][5] . "</td>
-    </tr>
-    <tr>
-      <td>Цена</td>
-      <td>" . $data[0][6] ."</td>
-      <td>" . $data2[0][6] ."</td>
-    </tr>
-    <tr>
-      <td>Рейтинг</td>
-      <td>" . $data[0][7] . "</td>
-      <td>" . $data2[0][7] . "</td>
-    </tr>
-  </tbody>
-</table>
-</div></center>";} // Вывод таблицы для сравнения характеристик процессоров
+$data3 = $pdo->query("SELECT `name`, `rate` FROM `processors` ORDER BY `rate` DESC;")->fetchAll();
 ?>
 <html>
 <head>
@@ -195,10 +144,149 @@ echo "
 		<button class='btn btn-success ru' type='submit'>Сравнить</button>
 		<button class='btn btn-success us' type='submit'>Compare</button>
 		<br>
-		<input type="checkbox"> Показать различия </input>
+		<input onclick="showDifference(this)" type="checkbox"> Показать различия </input>
 		</center>
 	</form>
 	
 </center>
+<?php 
+if ($proc1!==null && $proc2!==null){ // Проверка на ненулевое значение переменной с ID процессоров
+echo "
+<center><link rel='stylesheet' href='../style/compare.css'>
+	<table class='fixed_headers'>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>" . $data[0][0] . "</th>
+      <th>" . $data2[0][0] . "</th>
+    </tr>
+  </thead>
+  <tbody>
+  "; if ($data[0][1]<>$data2[0][1]){
+	echo "
+	<tr>
+      <td class='red'>Ядра</td>
+      <td class='red'>" . $data[0][1] . " </td>
+      <td class='red'>" . $data2[0][1] . "</td>
+    </tr>"
+  ;} else { 
+  	echo "
+	<tr>
+	<td>Ядра</td>
+	<td>" . $data[0][1] . " </td>
+	<td>" . $data2[0][1] . "</td>
+	</tr>"
+	;} if ($data[0][2]<>$data2[0][2]){
+		echo "
+		<tr>
+		  <td class='red'>Потоки</td>
+		  <td class='red'>" . $data[0][2] . " </td>
+		  <td class='red'>" . $data2[0][2] . "</td>
+		</tr>"
+	  ;} else { 
+		  echo "
+		<tr>
+		<td>Потоки</td>
+		<td>" . $data[0][2] . " </td>
+		<td>" . $data2[0][2] . "</td>
+		</tr>"
+		;} if ($data[0][3]<>$data2[0][3]){
+			echo "
+			<tr>
+			  <td class='red'>Частота</td>
+			  <td class='red'>" . $data[0][3] . " </td>
+			  <td class='red'>" . $data2[0][3] . "</td>
+			</tr>"
+		  ;} else { 
+			  echo "
+			<tr>
+			<td>Частота</td>
+			<td>" . $data[0][3] . " </td>
+			<td>" . $data2[0][3] . "</td>
+			</tr>"
+			;} if ($data[0][4]<>$data2[0][4]){
+				echo "
+				<tr>
+				  <td class='red'>Год выпуска</td>
+				  <td class='red'>" . $data[0][4] . " </td>
+				  <td class='red'>" . $data2[0][4] . "</td>
+				</tr>"
+			  ;} else { 
+				  echo "
+				<tr>
+				<td>Год выпуска</td>
+				<td>" . $data[0][4] . " </td>
+				<td>" . $data2[0][4] . "</td>
+				</tr>"
+				;} if ($data[0][5]<>$data2[0][5]){
+					echo "
+					<tr>
+					  <td class='red'>Сокет</td>
+					  <td class='red'>" . $data[0][5] . " </td>
+					  <td class='red'>" . $data2[0][5] . "</td>
+					</tr>"
+				  ;} else { 
+					  echo "
+					<tr>
+					<td>Сокет</td>
+					<td>" . $data[0][5] . " </td>
+					<td>" . $data2[0][5] . "</td>
+					</tr>"
+					;} if ($data[0][6]<>$data2[0][6]){
+						echo "
+						<tr>
+						  <td class='red'>Цена</td>
+						  <td class='red'>" . $data[0][6] . " </td>
+						  <td class='red'>" . $data2[0][6] . "</td>
+						</tr>"
+					  ;} else { 
+						  echo "
+						<tr>
+						<td>Цена</td>
+						<td>" . $data[0][6] . " </td>
+						<td>" . $data2[0][6] . "</td>
+						</tr> </tbody>
+						</table></center>"
+						;}} // Вывод таблицы для сравнения характеристик процессоров
+?>
+<?php
+						echo "<br><link rel='stylesheet' href='../style/style.css'><center>	
+						<table class='top'>
+						<h1 style='color:white; margin-top:5%; font-size:300%'>Топ процессоров</h1><br>
+						<thead style='color:white; font-size:200%' >
+						  <tr>
+							<th>Название</th>
+							<th>Рейтинг</th>
+						  </tr>
+						</thead>
+						<tbody style='color:white; font-size:150%'>
+						  <tr>
+						  <td>" . $data3[0][0] . " </td>
+						  <td>" . $data3[0][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[1][0] . " </td>
+						  <td>" . $data3[1][1] . "</td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[2][0] . " </td>
+						  <td>" . $data3[2][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[3][0] . " </td>
+						  <td>" . $data3[3][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[4][0] . " </td>
+						  <td>" . $data3[4][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[5][0] . " </td>
+						  <td>" . $data3[5][1] . " </td>
+						  </tr>
+						</tbody>
+					  </table></div></center>"
+					  
+?>
 </body>
 </html>

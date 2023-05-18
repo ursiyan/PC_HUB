@@ -7,53 +7,6 @@ require_once("bd.php");
 
 $data = $pdo->query("SELECT `name`,`LHR`,`videomemory`,`connection_interface`,`video_output`,`price`,`rate` FROM `gpu` WHERE `id` ='" . $proc1 . "';")->fetchAll();
 $data2 = $pdo->query("SELECT `name`,`LHR`,`videomemory`,`connection_interface`,`video_output`,`price`,`rate` FROM `gpu` WHERE `id` ='" . $proc2 . "';")->fetchAll();
-
-if ($proc1!=null && $proc2!==null){
-echo "
-<center><link rel='stylesheet' href='../style/compare.css'>
-<div class='cpu_comp'>
-	<table class='fixed_headers'>
-  <thead>
-    <tr>
-      <th>Название</th>
-      <th>" . $data[0][0] . "</th>
-      <th>" . $data2[0][0] . "</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>LHR</td>
-      <td>" . $data[0][1] . " </td>
-      <td>" . $data2[0][1] . "</td>
-    </tr>
-    <tr>
-      <td>Видео-память</td>
-      <td>" . $data[0][2] . "</td>
-      <td>" . $data2[0][2] . "</td>
-    </tr>
-    <tr>
-      <td>Типы подключения</td>
-      <td>" . $data[0][3] . "</td>
-      <td>" . $data2[0][3] . "</td>
-    </tr>
-    <tr>
-      <td>Видео-выход</td>
-      <td>" . $data[0][4] . "</td>
-      <td>" . $data2[0][4] . "</td>
-    </tr>
-    <tr>
-      <td>Цена</td>
-      <td>" . $data[0][5] . " </td>
-      <td>" . $data2[0][5] . "</td>
-    </tr>
-    <tr>
-      <td>Рейтинг</td>
-      <td>" . $data[0][6] ."</td>
-      <td>" . $data2[0][6] ."</td>
-    </tr>
-  </tbody>
-</table>
-</div></center>";}
 ?>
 <html>
 <head>
@@ -183,15 +136,103 @@ echo "
 				// Закрытие соединения с базой данных
 				mysqli_close($connection);
 				?>
-		</select></th>
+				</select></th>
 			</table>
 		<center>
 		<br><br><br>
 		<button class='btn btn-success ru' type='submit'>Сравнить</button>
 		<button class='btn btn-success us' type='submit'>Compare</button>
+		<br>
+		<input onclick="showDifference(this)" type="checkbox"> Показать различия </input>
 		</center>
 	</form>
 	
 </center>
-</body>
-</html>
+<?php 
+	if ($proc1!==null && $proc2!==null){ // Проверка на ненулевое значение переменной с ID процессоров
+		echo "
+		<center><link rel='stylesheet' href='../style/compare.css'>
+		<div class='cpu_comp'>
+			<table class='fixed_headers'>
+		  <thead>
+			<tr>
+			  <th>Название</th>
+			  <th>" . $data[0][0] . "</th>
+			  <th>" . $data2[0][0] . "</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  "; if ($data[0][1]<>$data2[0][1]){
+			echo "
+			<tr>
+			  <td class='red'>LHR</td>
+			  <td class='red'>" . $data[0][1] . " </td>
+			  <td class='red'>" . $data2[0][1] . "</td>
+			</tr>"
+		  ;} else { 
+			  echo "
+			<tr>
+			<td>LHR</td>
+			<td>" . $data[0][1] . " </td>
+			<td>" . $data2[0][1] . "</td>
+			</tr>"
+			;} if ($data[0][2]<>$data2[0][2]){
+				echo "
+				<tr>
+				  <td class='red'>Объем видеопамяти</td>
+				  <td class='red'>" . $data[0][2] . " </td>
+				  <td class='red'>" . $data2[0][2] . "</td>
+				</tr>"
+			  ;} else { 
+				  echo "
+				<tr>
+				<td>Объем видеопамяти</td>
+				<td>" . $data[0][2] . " </td>
+				<td>" . $data2[0][2] . "</td>
+				</tr>"
+				;} if ($data[0][3]<>$data2[0][3]){
+					echo "
+					<tr>
+					  <td class='red'>Тип соединения</td>
+					  <td class='red'>" . $data[0][3] . " </td>
+					  <td class='red'>" . $data2[0][3] . "</td>
+					</tr>"
+				  ;} else { 
+					  echo "
+					<tr>
+					<td>Тип соединения</td>
+					<td>" . $data[0][3] . " </td>
+					<td>" . $data2[0][3] . "</td>
+					</tr>"
+					;} if ($data[0][4]<>$data2[0][4]){
+						echo "
+						<tr>
+						  <td class='red'>Видео выходы</td>
+						  <td class='red'>" . $data[0][4] . " </td>
+						  <td class='red'>" . $data2[0][4] . "</td>
+						</tr>"
+					  ;} else { 
+						  echo "
+						<tr>
+						<td>Видео выходы</td>
+						<td>" . $data[0][4] . " </td>
+						<td>" . $data2[0][4] . "</td>
+						</tr>"
+						;} if ($data[0][5]<>$data2[0][5]){
+							echo "
+							<tr>
+							  <td class='red'>Цена</td>
+							  <td class='red'>" . $data[0][5] . " </td>
+							  <td class='red'>" . $data2[0][5] . "</td>
+							</tr>"
+						  ;} else { 
+							  echo "
+							<tr>
+							<td>Цена</td>
+							<td>" . $data[0][5] . " </td>
+							<td>" . $data2[0][5] . "</td>
+							</tr>"
+							;}} // Вывод таблицы для сравнения характеристик процессоров
+		?>
+		</body>
+		</html>
