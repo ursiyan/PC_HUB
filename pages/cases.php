@@ -31,6 +31,9 @@ $data = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`,
  * @var array $data2
  */
 $data2 = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`,`rate` FROM `cases` WHERE  `id` ='" . $proc2 . "';")->fetchAll();
+
+$data3 = $pdo->query("SELECT `name`, `rate` FROM `cases` ORDER BY `rate` DESC;")->fetchAll();
+
 ?>
 <html>
 <head>
@@ -131,7 +134,7 @@ $data2 = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`
 				 * @var array $connection
 				 */
 
-				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
+				 $connection = mysqli_connect("localhost", "ursiyan", "13371337loh", "pc_hub");
 
 				/**
 				 * @brief Выполняет запрос к базе данных MySQL для выборки всех записей из таблицы 
@@ -153,7 +156,7 @@ $data2 = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`
 
 				<?php
 				// Подключение к базе данных
-				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
+				$connection = mysqli_connect("localhost", "ursiyan", "13371337loh", "pc_hub");
 
 				// Получение списка предметов из базы данных
 				$result = mysqli_query($connection, "SELECT * FROM `cases`");
@@ -251,6 +254,45 @@ $data2 = $pdo->query("SELECT `name`,`color`,`form_factor`,`memory_slots`,`price`
 					  </table>
 					  </div></center>"
 					  ;}} // Вывод таблицы для сравнения характеристик процессоров
+?>
+<?php
+						echo "<br><link rel='stylesheet' href='../style/style.css'><center>	
+						<table class='top'>
+						<h1 style='color:white; margin-top:5%; font-size:300%'>Топ корпусов</h1><br>
+						<thead style='color:white; font-size:200%' >
+						  <tr>
+							<th>Название</th>
+							<th>Рейтинг</th>
+						  </tr>
+						</thead>
+						<tbody style='color:white; font-size:150%'>
+						  <tr>
+						  <td>" . $data3[0][0] . " </td>
+						  <td>" . $data3[0][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[1][0] . " </td>
+						  <td>" . $data3[1][1] . "</td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[2][0] . " </td>
+						  <td>" . $data3[2][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[3][0] . " </td>
+						  <td>" . $data3[3][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[4][0] . " </td>
+						  <td>" . $data3[4][1] . " </td>
+						  </tr>
+						  <tr>
+						  <td>" . $data3[5][0] . " </td>
+						  <td>" . $data3[5][1] . " </td>
+						  </tr>
+						</tbody>
+					  </table></div></center>"
+					  
 ?>
 </body>
 </html>

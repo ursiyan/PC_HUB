@@ -103,7 +103,7 @@ $data3 = $pdo->query("SELECT `name`, `rate` FROM `processors` ORDER BY `rate` DE
 			<option selected disabled hidden> Choose here </option>
 				<?php
 				// Подключение к базе данных
-				$connection = mysqli_connect("localhost", "root", "", "pc_hub"); 
+				$connection = mysqli_connect("localhost", "ursiyan", "13371337loh", "pc_hub");
 
 				// Получение списка предметов из базы данных
 				$result = mysqli_query($connection, "SELECT * FROM `processors`"); 
@@ -124,7 +124,7 @@ $data3 = $pdo->query("SELECT `name`, `rate` FROM `processors` ORDER BY `rate` DE
 
 				<?php
 				// Подключение к базе данных
-				$connection = mysqli_connect("localhost", "root", "", "pc_hub");
+				$connection = mysqli_connect("localhost", "ursiyan", "13371337loh", "pc_hub");
 
 				// Получение списка предметов из базы данных
 				$result = mysqli_query($connection, "SELECT * FROM `processors`");
